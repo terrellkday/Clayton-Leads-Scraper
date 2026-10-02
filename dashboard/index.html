@@ -663,7 +663,7 @@ function notices(){
       The most recent attempt didn't collect anything new, so nothing was overwritten.</div>`);
   }
   const rep = DATA.sources_report || {};
-  const down = Object.entries(rep).filter(([, v]) => v && v.ok === false)
+  const down = Object.entries(rep).filter(([, v]) => v && v.ok === false && v.status !== "skipped")
                      .map(([k]) => k.replace(/_/g," "));
   if(down.length && down.length < Object.keys(rep).length){
     out.push(`<div class="notice"><strong>Some sources were unavailable:</strong>

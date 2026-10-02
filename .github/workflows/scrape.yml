@@ -24,7 +24,7 @@ name: Daily Clayton Lead Scrape
 on:
   schedule:
     # GitHub cron is ALWAYS in UTC. 11:47 UTC is 7:47am Eastern in summer
-    # (EDT) and 6:17am Eastern in winter (EST). GitHub does not adjust for
+    # (EDT) and 6:47am Eastern in winter (EST). GitHub does not adjust for
     # daylight saving, so the local time shifts by an hour twice a year --
     # harmless here, since the scraper looks back a full 7 days either way.
     #
@@ -41,7 +41,7 @@ on:
         default: "3"
         type: string
       skip_sources:
-        description: "Sources to skip, comma separated: LANDMARK,NOTICES,TAX"
+        description: "Sources to skip, comma separated: GSCCCA,NOTICES,TAX,PARCELS"
         required: false
         default: ""
         type: string
@@ -50,11 +50,16 @@ on:
         required: false
         default: false
         type: boolean
+      gsccca_verify:
+        description: "Probe the GSCCCA premium search controls and exit (no scraping)"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
+  # The scrape job only needs to write results back. Pages deployment gets
+  # its own narrower permissions on the publish job below.
   contents: write      # save records.json and the CSV back to the repo
-  pages: write         # publish the dashboard
-  id-token: write      # required by the Pages deploy action
 
 # Never let two runs overlap. cancel-in-progress stays false so a long parcel
 # download is allowed to finish rather than being killed halfway.
@@ -139,7 +144,19 @@ jobs:
           # Settings -> Secrets and variables -> Actions.
           GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
           GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
+          # GSCCCA premium deed/lien search. Leave unset and the source is
+          # skipped; set GSCCCA_PREMIUM=1 plus the login to enable it.
+          GSCCCA_PREMIUM: ${{ secrets.GSCCCA_PREMIUM }}
+          GSCCCA_USER: ${{ secrets.GSCCCA_USER }}
+          GSCCCA_PASS: ${{ secrets.GSCCCA_PASS }}
+          GSCCCA_VERIFY: ${{ github.event.inputs.gsccca_verify == 'true' && '1' || '' }}
         run: python scraper/fetch.py
+
+      - name: Run parser tests
+        # No network, a few seconds -- catches regressions before the scrape.
+        run: |
+          python scraper/test_qpublic_parser.py
+          python scraper/test_regression.py
 
       - name: Write the run summary
         # Produces a plain-English report on the Actions run page so you can see
@@ -189,7 +206,8 @@ jobs:
               lines += ["## Where the leads came from", "",
                         "| Source | Status | Records |", "|---|---|---|"]
               for name, info in report.items():
-                  mark = "working" if info.get("ok") else "not available"
+                  mark = {"ok": "working", "skipped": "skipped"}.get(
+                      info.get("status"), "not available")
                   note = info.get("error") or ""
                   label = name.replace("_", " ").title()
                   lines.append(f"| {label} | {mark} | {info.get('count', 0)} |")
@@ -238,11 +256,9 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
           path: |
-            data/gsccca_discovery.json
-            data/landmark_failure.png
-            data/landmark_page_dump.html
+            data/debug.log
+            data/notice_page_sample.json
             data/unmapped_doc_types.json
-            NEEDS_ATTENTION.md
 
       - name: Save the results back to the repository
         if: always()
@@ -349,6 +365,9 @@ jobs:
     needs: scrape
     if: always()
     runs-on: ubuntu-24.04
+    permissions:
+      pages: write         # publish the dashboard
+      id-token: write      # required by the Pages deploy action
     # Tolerated on purpose: until GitHub Pages is switched on in Settings this
     # step cannot succeed, and a hard failure here would send a failure email
     # every single morning while the lead collection itself is working fine.

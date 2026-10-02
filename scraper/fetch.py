@@ -86,7 +86,16 @@ STATE_ABBR = "GA"
 # Three days, not one. The scraper looks back a little further than a day so a
 # single failed morning cannot leave a permanent hole in the record, and
 # NEW_ONLY below strips the overlap back out so exports still read as "today".
-LOOKBACK_DAYS = int(os.getenv("LOOKBACK_DAYS", "3"))
+def _int_env(name: str, default: int) -> int:
+    """int(os.getenv(...)) that survives garbage input instead of crashing the
+    import. A bad value falls back to the default."""
+    try:
+        return int(str(os.getenv(name, default)).strip())
+    except (TypeError, ValueError):
+        return default
+
+
+LOOKBACK_DAYS = _int_env("LOOKBACK_DAYS", 3)
 
 # Keep only documents never seen on a previous run. This is what makes each
 # daily export genuinely fresh: filed dates are what the county recorded, but
@@ -134,6 +143,7 @@ for _d in (DATA_DIR, DASH_DIR, CACHE_DIR):
 
 RECORDS_JSON_PATHS = [DASH_DIR / "records.json", DATA_DIR / "records.json"]
 GHL_CSV_PATHS = [DATA_DIR / "ghl_leads.csv", DASH_DIR / "ghl_leads.csv"]
+UPDATED_CSV_PATHS = [DATA_DIR / "updated_leads.csv", DASH_DIR / "updated_leads.csv"]
 SEEN_STATE_PATH = DATA_DIR / "seen_documents.json"
 UNKNOWN_DOCTYPES_PATH = DATA_DIR / "unmapped_doc_types.json"
 DISCOVERY_PATH = DATA_DIR / "gsccca_discovery.json"
@@ -331,17 +341,31 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 SOURCE_REPORT: Dict[str, Dict[str, Any]] = {}
 
 
-def record_source_result(name: str, ok: bool, count: int = 0, error: str = "") -> None:
+def record_source_result(name: str, ok: bool = True, count: int = 0,
+                         error: str = "", status: str = "") -> None:
     """
-    A source that ran without raising but returned nothing has NOT worked, and
-    reporting it as "working" hides the only failure that matters. Anything
-    that yields zero records is recorded as a problem unless it was
-    deliberately skipped.
+    Record how a source fared: status is "ok", "skipped" or "failed".
+
+    A source that ran without raising but returned nothing has NOT worked,
+    and reporting it as "working" hides the only failure that matters.
+    Anything that yields zero records is recorded as a problem unless it was
+    deliberately skipped. An unconfigured optional source (no premium
+    account, no parcel layer) is "skipped", not "failed" -- there is nothing
+    broken, just nothing to do.
     """
-    if ok and count == 0 and "skip" not in error.lower() and name not in ("browser",):
-        ok = False
-        error = error or "ran but found no records"
-    SOURCE_REPORT[name] = {"ok": ok, "count": count, "error": error[:400]}
+    if not status:
+        low = error.lower()
+        if "skip" in low or "not configured" in low or "no premium account" in low:
+            status = "skipped"
+        elif ok and (count > 0 or name == "browser"):
+            status = "ok"
+        elif ok:
+            status = "failed"
+            error = error or "ran but found no records"
+        else:
+            status = "failed"
+    SOURCE_REPORT[name] = {"ok": status == "ok", "status": status,
+                           "count": count, "error": error[:400]}
 
 
 # =============================================================================
@@ -498,7 +522,7 @@ def parse_money(value: Any) -> Optional[float]:
         text2 = re.sub(r"[^\d.]", "", text)
         try:
             v = float(text2)
-            return v if v > 0 else None
+            return v if 0 < v <= MAX_SANE_AMOUNT else None
         except ValueError:
             return None
     try:
@@ -632,16 +656,26 @@ def core_signature(raw: Any) -> str:
     return " ".join(sorted(toks))
 
 
-def split_person_name(raw: str) -> Tuple[str, str]:
+def split_person_name(raw: str, order: str = "last-first") -> Tuple[str, str]:
     """
     Best-effort First / Last split for the GHL CSV.
     Entities are returned whole in the first slot with an empty last name.
+
+    order is "last-first" for deed-index style names ("SMITH JOHN") and
+    "natural" for legal-notice style names ("John Smith"). Joint owners
+    ("Marcia Davis and Kitoshia Eason") are split on and/& and only the
+    first person is exported -- one CRM row per person would double-count.
     """
     norm = normalize_name(raw)
     if not norm:
         return "", ""
     if is_entity(norm):
         return clean_text(raw), ""
+
+    # Joint owners: keep the first person only.
+    norm = re.split(r"\s+(?:and|&)\s+", norm, maxsplit=1, flags=re.I)[0].strip()
+    if not norm:
+        return "", ""
 
     if "," in norm:
         left, _, right = norm.partition(",")
@@ -653,6 +687,10 @@ def split_person_name(raw: str) -> Tuple[str, str]:
     toks_ns = [t for t in toks if t not in NAME_SUFFIXES]
     if len(toks_ns) == 1:
         return toks_ns[0].title(), ""
+    if order == "natural":
+        # "John Smith" -> First="John", Last="Smith".
+        # "John Michael Smith" -> First="John Michael", Last="Smith".
+        return " ".join(toks_ns[:-1]).title(), toks_ns[-1].title()
     if len(toks_ns) == 2:
         # Deed indexes are overwhelmingly LAST FIRST.
         return toks_ns[1].title(), toks_ns[0].title()
@@ -1010,7 +1048,8 @@ class ParcelIndex:
         if not PARCEL_LAYER:
             log.info("No parcel source configured (PARCEL_LAYER unset); "
                      "skipping parcel enrichment")
-            record_source_result("parcels", True, 0, "no parcel source")
+            record_source_result("parcels", True, 0, "no parcel source",
+                                 status="skipped")
             return
         cached = self._load_cache()
         if cached is not None:
@@ -1276,7 +1315,7 @@ def categorize(doc_type: str) -> Tuple[str, bool]:
     best_cat, best_len, best_rank = None, 0, 999
     for rank, cat in enumerate(CATEGORY_ORDER):
         for alias in DOCUMENT_TYPE_MAP.get(cat, []):
-            if alias in text:
+            if re.search(r"\b" + re.escape(alias) + r"\b", text):
                 n = len(alias)
                 if n > best_len or (n == best_len and rank < best_rank):
                     best_cat, best_len, best_rank = cat, n, rank
@@ -1729,7 +1768,8 @@ OWNER_RES = [re.compile(pat, re.I) for pat in OWNER_PATTERNS]
 # "MARCUS T DUNCAN to Mortgage Electronic" is a good name plus junk, not junk.
 _OWNER_STOP = re.compile(
     r"\s+(?:to|as|of|in|and\s+recorded|hereinafter|dated|recorded|will|shall|"
-    r"pursuant|whose|by|for|a\s+single|an\s+unmarried|conveying|securing|"
+    r"pursuant|whose|by|for|a\s+single|an\s+unmarried|"
+    r"a\s+married\s+(?:person|man|woman)|conveying|securing|"
     # Barment notices repeat this boilerplate after every name.
     r"or\s+any\s+unknown|or\s+unknown|heirs\s+at\s+law|estate\s+representative|\bor\b)\s",
     re.I)
@@ -1859,6 +1899,23 @@ def parse_notice_body(text: str, category_hint: str = "") -> Dict[str, Any]:
         "lender": lender,
         "legal": body[:600],
     }
+
+
+# Weekday publication dates, e.g. "Wednesday, October 1, 2025". These move
+# with every weekly republication, so they are stripped before hashing.
+_PUB_DATE_RE = re.compile(
+    r"(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s+"
+    r"[A-Z][a-z]+ \d{1,2}, 20\d{2}")
+
+
+def _strip_notice_header(text: str) -> str:
+    """
+    Remove the parts of a legal ad that change with every republication --
+    the leading ad code / site marker and the weekday publication dates --
+    so weekly re-runs of one notice hash identically.
+    """
+    body = re.sub(r"^[A-Z]{2,4}\d{4,6}\s+(?:GPN\d+\s+)?", "", text, flags=re.I)
+    return clean_text(_PUB_DATE_RE.sub("", body))
 
 
 class LegalNoticeScraper:
@@ -2156,10 +2213,16 @@ class LegalNoticeScraper:
         r"\$\s?[\d,]{3,}|\b20\d{2}\b.{0,40}\b(?:deed|book|page|parcel|fi\.? ?fa)\b",
         re.I)
 
-    # "City: Decatur County: DeKalb 430-186868"
+    # "City: Decatur County: DeKalb 430-186868" -- DeKalb-style numeric ids.
+    # Clayton ads carry letter codes instead: "City: Jonesboro County:
+    # Clayton CND7862". The trailing id is optional either way.
     HEADER_RE = re.compile(
         r"City:\s*([A-Za-z .'-]{3,30}?)\s+County:\s*([A-Za-z]{3,20})"
-        r"(?:\s+(\d{3}-\d{5,7}))?", re.I)
+        r"(?:\s+(\d{3}-\d{5,7}|[A-Za-z]{2,4}\d{4,6}))?", re.I)
+
+    # The letter-code an ad leads with, e.g. "CND7862 GPN11 NOTICE OF ...".
+    # "GPN\d+" is the site's own category marker, not the ad's id.
+    AD_CODE_RE = re.compile(r"\b(?!GPN)([A-Z]{2,4}\d{4,6})\b", re.I)
 
     @classmethod
     def _is_navigation(cls, text: str) -> bool:
@@ -2202,6 +2265,7 @@ class LegalNoticeScraper:
         # Prefer tight containers so two notices never merge into one block.
         candidates = soup.select("tr, li, div")
         stage["candidate blocks"] = len(candidates)
+        passing: List[Tuple[Any, str]] = []
         for block in candidates:
             text = clean_text(block.get_text(" "))
             if not (150 <= len(text) <= 6000):
@@ -2222,7 +2286,19 @@ class LegalNoticeScraper:
             if len(inner) > 2:
                 stage["wrapper, not a single notice"] += 1
                 continue
+            passing.append((block, text))
 
+        # An ad nested inside another passing block is the same ad twice --
+        # keep only the innermost block (7 ads were becoming 14 records).
+        passing_ids = {id(b) for b, _ in passing}
+        blocks: List[Tuple[Any, str]] = []
+        for block, text in passing:
+            if any(id(p) in passing_ids for p in block.parents):
+                stage["outer wrapper of another notice"] += 1
+                continue
+            blocks.append((block, text))
+
+        for block, text in blocks:
             sig = sha_key(text[:260])
             if sig in seen:
                 continue
@@ -2234,12 +2310,23 @@ class LegalNoticeScraper:
                 notice_city = clean_text(hdr.group(1)).title()
                 notice_id = clean_text(hdr.group(3) or "")
             if not notice_id:
+                # Clayton ads lead with their code ("CND7862 GPN11 ...") --
+                # take it as the stable ad id.
+                m = LegalNoticeScraper.AD_CODE_RE.search(text[:600])
+                if m:
+                    notice_id = m.group(1).upper()
+            if not notice_id:
                 m = re.search(r"[?&]ID=(\d+)", str(block))
                 if m:
                     notice_id = m.group(1)
             if not notice_id:
                 m = re.search(r"\b(\d{3}-\d{5,7}|GA\d{10,}|\d{2}-\d{3,5})\b", text)
-                notice_id = m.group(1) if m else sig
+                notice_id = m.group(1) if m else ""
+            if not notice_id:
+                # Last resort: hash the body with the dated masthead stripped,
+                # so the weekly republications of one notice hash identically
+                # and are not re-exported as new under NEW_ONLY.
+                notice_id = sha_key(_strip_notice_header(text))
 
             out.append({"notice_id": notice_id, "city": notice_city,
                         "url": LEGAL_NOTICE_SEARCH_URL,
@@ -2310,7 +2397,11 @@ class LegalNoticeScraper:
             "legal": text[:600],
             "parcel_id": "",
             "prop_address": parsed["prop_address"],
-            "prop_city": item.get("city", ""),
+            "prop_city": "",
+            # The "City:" in an ad header is the newspaper's city (the legal
+            # organ), never the property's -- keep it separate.
+            "pub_city": item.get("city", ""),
+            "name_order": "natural",
             "prop_zip": parsed["prop_zip"],
             "clerk_url": item["url"],
             "source": "Georgia Public Notice (legal organ advertisement)",
@@ -2517,20 +2608,51 @@ TAX_PDF_MONTHS = {
 DATE_WORD_RE = re.compile(r"^\d{1,2}/\d{1,2}/\d{2,4}$")
 
 
-def _tax_pdf_links(session: requests.Session) -> List[Tuple[str, str]]:
-    """Read the public PDF directory listing; return [(filename, url)]."""
+def _tax_pdf_links(session: requests.Session) -> List[Tuple[str, str, str]]:
+    """Read the public PDF directory listing; return [(filename, url, modified)]."""
     resp = session.get(TAX_SALE_LISTING_URLS[0], timeout=HTTP_TIMEOUT)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "lxml")
     base = TAX_SALE_LISTING_URLS[0]
-    links: List[Tuple[str, str]] = []
+    links: List[Tuple[str, str, str]] = []
     for a in soup.find_all("a", href=True):
         href = a["href"]
         if href.lower().endswith(".pdf"):
             name = href.rsplit("/", 1)[-1]
             url = href if href.startswith("http") else base.rstrip("/") + "/" + name
-            links.append((name, url))
+            links.append((name, url, _listing_modified(a)))
     return links
+
+
+_LISTING_DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})\s+\d{1,2}:\d{2}\s*[AP]M", re.I)
+
+
+def _listing_modified(anchor: Any) -> str:
+    """
+    Pull the "last modified" date shown next to a directory-listing link
+    (IIS style: "9/9/2026  8:56 AM  72079 <name>"). Returns "YYYY-MM-DD"
+    or "" when the listing carries no date.
+    """
+    bits = []
+    for sib in anchor.previous_siblings:
+        if getattr(sib, "name", None) in ("br", "a"):
+            break
+        bits.append(sib.get_text() if hasattr(sib, "get_text") else str(sib))
+    m = _LISTING_DATE_RE.search(" ".join(reversed(bits)))
+    if m:
+        return f"{int(m.group(3)):04d}-{int(m.group(1)):02d}-{int(m.group(2)):02d}"
+    return ""
+
+
+# A tax-sale listing name mentions the tax sale; anything else in the
+# directory (forms, backups of other documents) is not a candidate, no matter
+# how new it is.
+_TAX_LISTING_NAME_RE = re.compile(
+    r"tax.{0,12}(sale|listing|delinq|levy|fi\.?\s?fa)|\btax\s+sale\b", re.I)
+
+
+def _looks_like_tax_listing(name: str) -> bool:
+    return bool(_TAX_LISTING_NAME_RE.search(name))
 
 
 def _tax_pdf_rank(name: str) -> Tuple[int, int, str]:
@@ -2540,6 +2662,11 @@ def _tax_pdf_rank(name: str) -> Tuple[int, int, str]:
     m = re.search(r"(19|20)\d{2}", low)
     if m:
         year = int(m.group(0))
+    else:
+        # Two-digit years: "9-8-26.pdf", "10-6-26.pdf" are 2026, not dateless.
+        m2 = re.search(r"(?<![\d/])(\d{1,2})[-_](\d{1,2})[-_](\d{2})(?!\d)", low)
+        if m2:
+            year = 2000 + int(m2.group(3))
     month = 0
     for mname, mnum in TAX_PDF_MONTHS.items():
         if mname in low:
@@ -2552,12 +2679,15 @@ def _tax_pdf_rank(name: str) -> Tuple[int, int, str]:
     return (year, month, low)
 
 
-def _pick_newest_tax_pdf(links: List[Tuple[str, str]]) -> Optional[Tuple[str, str]]:
-    dated = [(n, u) for n, u in links if _tax_pdf_rank(n)[0] >= 2000]
-    pool = dated or links
-    if not pool:
-        return None
-    return max(pool, key=lambda nu: _tax_pdf_rank(nu[0]))
+def _rank_tax_pdfs(links: List[Tuple[str, str, str]]) -> List[Tuple[str, str]]:
+    """
+    Newest-first [(filename, url)]. The directory listing's modified date
+    beats the filename -- filenames lie ("NOVEMBER ... 9-8-26.pdf") and two
+    different months' lists can share a posting day.
+    """
+    cands = [it for it in links if _looks_like_tax_listing(it[0])]
+    cands.sort(key=lambda it: (it[2], *_tax_pdf_rank(it[0])), reverse=True)
+    return [(n, u) for n, u, _ in cands]
 
 
 def _cluster_words_by_row(words: List[Tuple]) -> List[List[Tuple]]:
@@ -2669,15 +2799,21 @@ def _parse_tax_sale_pdf(pdf_bytes: bytes, source_url: str) -> List[Dict[str, Any
             owner = normalize_name(owner)
             if not parcel_id:
                 continue
-            filed = fmt_date(parse_date(sale_date))
+            sale_dt = parse_date(sale_date)
+            filed = fmt_date(sale_dt)
             years_txt = re.sub(r"\s+", "", years)
+            # The same parcel repeats in every monthly list; without the sale
+            # month in the key, dedupe collapses them into one document and
+            # NEW_ONLY never re-exports the new month.
+            stamp = sale_dt.strftime("%Y%m") if sale_dt else "000000"
             out.append({
-                "doc_num": f"TAX-{normalize_parcel_id(parcel_id)}",
+                "doc_num": f"TAX-{stamp}-{normalize_parcel_id(parcel_id)}",
                 "doc_type": "Tax Sale / FiFa (CLAYTON)",
                 "filed": filed,
                 "cat": "TAX",
                 "cat_label": CAT_LABELS["TAX"],
                 "owner": owner,
+                "name_order": "last-first",
                 "grantee": "Clayton County Tax Commissioner",
                 "amount": bid,
                 "legal": (f"Delinquent tax years {years_txt}. "
@@ -2711,26 +2847,34 @@ async def scrape_tax_sales(session: requests.Session) -> List[Dict[str, Any]]:
         log.warning("Could not read the Clayton tax PDF directory: %s", exc)
         record_source_result("tax_sales", False, 0, str(exc))
         return []
-    pick = _pick_newest_tax_pdf(links)
+    pick = _rank_tax_pdfs(links)
     if not pick:
         log.warning("No tax sale PDFs found in the Clayton directory listing")
         record_source_result("tax_sales", False, 0, "no PDFs listed")
         return []
-    name, url = pick
-    log.info("Newest Clayton tax sale PDF: %s", name)
-    try:
-        resp = await asyncio.to_thread(session.get, url, timeout=HTTP_TIMEOUT)
-        resp.raise_for_status()
-        rows = await asyncio.to_thread(_parse_tax_sale_pdf, resp.content, url)
-    except Exception as exc:  # noqa: BLE001
-        log.warning("Clayton tax sale PDF failed: %s", exc)
-        record_source_result("tax_sales", False, 0, str(exc))
+    # Filenames lie and months get reposted; walk newest-first and take the
+    # first file that actually parses as a tax-sale list.
+    rows: List[Dict[str, Any]] = []
+    picked = ""
+    for name, url in pick:
+        log.info("Trying Clayton tax sale PDF: %s", name)
+        try:
+            resp = await asyncio.to_thread(session.get, url, timeout=HTTP_TIMEOUT)
+            resp.raise_for_status()
+            rows = await asyncio.to_thread(_parse_tax_sale_pdf, resp.content, url)
+        except Exception as exc:  # noqa: BLE001
+            log.warning("  %s failed: %s", name, str(exc)[:160])
+            continue
+        if rows:
+            picked = name
+            break
+        log.info("  %s parsed to zero rows; trying the next newest", name)
+    if not rows:
+        record_source_result("tax_sales", False, 0, "no rows parsed")
         return []
 
-    if rows:
-        record_source_result("tax_sales", True, len(rows))
-    else:
-        record_source_result("tax_sales", False, 0, "no rows parsed")
+    log.info("Clayton tax sale PDF: %s", picked)
+    record_source_result("tax_sales", True, len(rows))
     return rows
 
 
@@ -2901,7 +3045,7 @@ class SupplementalIndex:
 QPUBLIC_URL = ("https://qpublic.schneidercorp.com/Application.aspx"
                "?AppID=1234&LayerID=39180&PageTypeID=4&PageID=14580&KeyValue={key}")
 QPUBLIC_CACHE_PATH = DATA_DIR / "qpublic_cache.json"
-QPUBLIC_MAX_LOOKUPS = int(os.getenv("QPUBLIC_MAX_LOOKUPS", "150"))
+QPUBLIC_MAX_LOOKUPS = _int_env("QPUBLIC_MAX_LOOKUPS", 150)
 
 
 def _qpublic_key(parcel_id: str) -> str:
@@ -2980,6 +3124,29 @@ def load_qpublic_cache() -> Dict[str, Dict[str, Any]]:
     return blob if isinstance(blob, dict) else {}
 
 
+def _qpublic_note_failure(cache: Dict[str, Dict[str, Any]], pid: str) -> None:
+    """
+    Negative-cache a failed parcel lookup with exponential backoff (2, 4, 8
+    ... days, capped at 30). A parcel that never loads stops burning the
+    daily lookup budget after its first failure instead of every morning.
+    """
+    prior = cache.get(pid) or {}
+    attempts = int(prior.get("attempts") or 0) + 1
+    backoff = min(2 ** min(attempts, 5), 30)
+    cache[pid] = {
+        "failed": True,
+        "attempts": attempts,
+        "next_retry": (now_et() + timedelta(days=backoff)).strftime("%Y-%m-%d"),
+        "fetched": today_et(),
+    }
+
+
+def _qpublic_retry_due(entry: Dict[str, Any]) -> bool:
+    """A negatively cached parcel becomes eligible again after next_retry."""
+    return bool(entry.get("failed")) and \
+        (entry.get("next_retry") or "") <= today_et()
+
+
 async def enrich_from_qpublic(records: List[Dict[str, Any]]) -> Tuple[int, int]:
     """
     Fill parcel_owner + mailing address for records that carry a parcel_id,
@@ -2997,7 +3164,8 @@ async def enrich_from_qpublic(records: List[Dict[str, Any]]) -> Tuple[int, int]:
         return 0, 0
 
     cache = load_qpublic_cache()
-    fresh = {pid: rs for pid, rs in want.items() if pid not in cache}
+    fresh = {pid: rs for pid, rs in want.items()
+             if pid not in cache or _qpublic_retry_due(cache[pid])}
     if fresh:
         log.info("qPublic: %d parcels to look up (%d cached)",
                  len(fresh), len(want) - len(fresh))
@@ -3019,15 +3187,22 @@ async def enrich_from_qpublic(records: List[Dict[str, Any]]) -> Tuple[int, int]:
                             owner, mail_lines = parse_qpublic_owner(html)
                             if not owner:
                                 failed += 1
+                                _qpublic_note_failure(cache, pid)
                                 log.debug("qPublic: no owner block for %s", pid)
                                 continue
                             entry = {"owner": owner, "mail": mail_lines,
-                                     "fetched": date.today().isoformat()}
+                                     "fetched": today_et()}
                             cache[pid] = entry
                             enriched += _apply_qpublic_entry(recs, entry)
                         except Exception as exc:  # noqa: BLE001
                             failed += 1
-                            log.debug("qPublic lookup failed for %s: %s", pid, exc)
+                            _qpublic_note_failure(cache, pid)
+                            if failed <= 3:
+                                log.warning("qPublic lookup failed for %s: %s",
+                                            pid, exc)
+                            else:
+                                log.debug("qPublic lookup failed for %s: %s",
+                                          pid, exc)
                         if i < len(fresh) - 1:
                             await page.wait_for_timeout(int(POLITE_DELAY * 1000))
                 finally:
@@ -3038,13 +3213,39 @@ async def enrich_from_qpublic(records: List[Dict[str, Any]]) -> Tuple[int, int]:
 
     # Records whose parcel was cached on an earlier run still get filled in.
     for pid, recs in want.items():
-        if pid in cache and pid not in fresh:
+        if pid in cache and pid not in fresh and not cache[pid].get("failed"):
             enriched += _apply_qpublic_entry(recs, cache[pid])
 
     if fresh:
         safe_write_json(QPUBLIC_CACHE_PATH, cache)
     log.info("qPublic enrichment: %d enriched, %d failed", enriched, failed)
     return enriched, failed
+
+
+def apply_qpublic_cache(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Cache-only pass over records that are NOT new this run: fill mailing
+    addresses from earlier qPublic lookups without spending the lookup
+    budget. Returns the records that gained a mailing address they did not
+    have -- previously exported leads that got better, and go out in
+    updated_leads.csv.
+    """
+    cache = load_qpublic_cache()
+    updated = []
+    for rec in records:
+        if rec.get("mail_address"):
+            continue
+        pid = clean_text(rec.get("parcel_id", ""))
+        entry = cache.get(pid)
+        if not entry or entry.get("failed"):
+            continue
+        _apply_qpublic_entry([rec], entry)
+        if rec.get("mail_address"):
+            updated.append(rec)
+    if updated:
+        log.info("qPublic cache gave %d previously exported records a mailing "
+                 "address", len(updated))
+    return updated
 
 
 def _apply_qpublic_entry(recs: List[Dict[str, Any]],
@@ -3078,13 +3279,16 @@ def _apply_qpublic_entry(recs: List[Dict[str, Any]],
 def _split_city_state_zip(line: str) -> Tuple[str, str, str, str]:
     """
     'ELLENWOOD GA 30294' -> ('', 'Ellenwood', 'GA', '30294').
+    ZIP+4 works hyphenated or space-separated:
+    'ELLENWOOD GA 30294-2213' -> ('', 'Ellenwood', 'GA', '30294-2213').
+    'ELLENWOOD GA 30294 2213' -> ('', 'Ellenwood', 'GA', '30294-2213').
     A PO box jammed onto the city line comes back as street_extra:
     'PO BOX 1234 ATLANTA GA 30303' -> ('PO Box 1234', 'Atlanta', 'GA', '30303').
     """
-    m = re.match(r"^(.*?)\s+([A-Z]{2})\s+(\d{5}(?:-\d{4})?)\s*$",
+    m = re.match(r"^(.*?)\s+([A-Z]{2})\s+(\d{5}(?:[-\s]?\d{4})?)\s*$",
                  clean_text(line).upper())
     if m:
-        city, state, zipc = m.group(1).title(), m.group(2), m.group(3)
+        city, state, zipc = m.group(1).title(), m.group(2), m.group(3).replace(" ", "-")
         pm = re.match(r"^(P\.?\s*O\.?\s*BOX\s+[\w-]+)\s+(.*)$", city, re.I)
         if pm:
             return pm.group(1).strip(), pm.group(2).strip() or city, state, zipc
@@ -3327,8 +3531,16 @@ def build_flags(rec: Dict[str, Any], ctx: Dict[str, Any],
         if flag and flag not in flags:
             flags.append(flag)
 
-    if rec.get("cat") == "TAX" and "Tax sale" not in flags:
-        if rec.get("tax_sale_date") or rec.get("foreclosure_sale_date"):
+    if rec.get("cat") == "TAX":
+        # A sale date in the past is not an upcoming auction -- it is a done
+        # deal in its redemption period, which is a different conversation.
+        sale_dt = parse_date(rec.get("tax_sale_date")
+                             or rec.get("foreclosure_sale_date") or "")
+        if sale_dt and sale_dt.date() < now_et().date():
+            if "Past tax sale / redemption period" not in flags:
+                flags.append("Past tax sale / redemption period")
+        elif (rec.get("tax_sale_date") or rec.get("foreclosure_sale_date")) \
+                and "Tax sale" not in flags:
             flags.append("Tax sale")
 
     owner_tokens = set(name_tokens(rec.get("owner", "")))
@@ -3404,7 +3616,7 @@ def score_record(rec: Dict[str, Any], ctx: Dict[str, Any], flags: List[str]) -> 
         score += CATEGORY_WEIGHT.get(cat, 10)
 
     # Flags that carry weight but are not categories.
-    if "Tax sale" in flags:
+    if "Tax sale" in flags or "Past tax sale / redemption period" in flags:
         score += 5
 
     if ctx.get("has_lp_and_fc"):
@@ -3457,10 +3669,12 @@ def score_record(rec: Dict[str, Any], ctx: Dict[str, Any], flags: List[str]) -> 
 # =============================================================================
 
 OUTPUT_FIELDS = [
-    "doc_num", "doc_type", "filed", "cat", "cat_label", "owner", "grantee",
+    "doc_num", "doc_type", "filed", "cat", "cat_label", "owner", "parcel_owner",
+    "name_order", "grantee",
     "amount", "legal", "parcel_id", "prop_address", "prop_city", "prop_state",
-    "prop_zip", "mail_address", "mail_city", "mail_state", "mail_zip",
+    "prop_zip", "pub_city", "mail_address", "mail_city", "mail_state", "mail_zip",
     "owner_occupied", "clerk_url", "source", "foreclosure_sale_date",
+    "tax_sale_date", "years_delinquent", "heirs_unknown",
     "notice_number", "status", "match_confidence", "match_method",
     "last_verified", "flags", "score", "county", "first_seen",
 ]
@@ -3709,7 +3923,24 @@ def collapse_to_contacts(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return out
 
 
-def export_ghl_csv(records: List[Dict[str, Any]]) -> None:
+def _write_csv_paths(blob: str, targets: List[Path], encoding: str) -> None:
+    for path in targets:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_suffix(".csv.tmp")
+        tmp.write_text(blob, encoding=encoding)
+        os.replace(tmp, path)
+
+
+def _dated_export_path(kind: str) -> Path:
+    """data/exports/ghl_2026-10-02.csv -- one snapshot per run, so a missed
+    day never requires git archaeology to reconstruct."""
+    d = DATA_DIR / "exports"
+    d.mkdir(parents=True, exist_ok=True)
+    return d / f"{kind}_{today_et()}.csv"
+
+
+def export_ghl_csv(records: List[Dict[str, Any]],
+                   paths: Optional[List[Path]] = None) -> None:
     columns = [
         "First Name", "Last Name",
         "Mailing Address", "Mailing City", "Mailing State", "Mailing Zip",
@@ -3718,16 +3949,29 @@ def export_ghl_csv(records: List[Dict[str, Any]]) -> None:
         "Amount/Debt Owed", "Seller Score", "Motivated Seller Flags",
         "Source", "Public Records URL",
     ]
+    targets = paths if paths is not None else GHL_CSV_PATHS
+    main_export = paths is None
+
+    # Always collapse. One seller must never appear twice in the CRM import.
+    records = collapse_to_contacts(collapse_to_properties(records))
 
     if not records:
-        existing = [p for p in GHL_CSV_PATHS if p.exists() and p.stat().st_size > 200]
+        if main_export and NEW_ONLY:
+            # Nothing new today: write an honest header-only file rather than
+            # leaving yesterday's export in place pretending it is today's.
+            # The dated snapshot keeps the day in history either way.
+            buf = io.StringIO()
+            csv.DictWriter(buf, fieldnames=columns).writeheader()
+            _write_csv_paths(buf.getvalue(), targets, "utf-8-sig")
+            _dated_export_path("ghl").write_text(buf.getvalue(),
+                                                 encoding="utf-8-sig")
+            log.info("No new records today -- wrote header-only ghl_leads.csv")
+            return
+        existing = [p for p in targets if p.exists() and p.stat().st_size > 200]
         if existing:
             log.warning("No records this run -- leaving the existing %s in place",
                         existing[0].name)
             return
-
-    # Always collapse. One seller must never appear twice in the CRM import.
-    records = collapse_to_contacts(collapse_to_properties(records))
 
     buf = io.StringIO()
     writer = csv.DictWriter(buf, fieldnames=columns, extrasaction="ignore")
@@ -3735,7 +3979,12 @@ def export_ghl_csv(records: List[Dict[str, Any]]) -> None:
     written = 0
     for rec in records:
         try:
-            first, last = split_person_name(rec.get("owner", ""))
+            # The parcel roll's owner of record beats the document's owner
+            # spelling when we have it; it is always LAST FIRST order.
+            owner = rec.get("parcel_owner") or rec.get("owner", "")
+            order = ("last-first" if rec.get("parcel_owner")
+                     else rec.get("name_order") or "last-first")
+            first, last = split_person_name(owner, order)
             amount = rec.get("amount")
             writer.writerow({
                 "First Name": first,
@@ -3780,12 +4029,13 @@ def export_ghl_csv(records: List[Dict[str, Any]]) -> None:
     else:
         log.info("CSV verified: %d rows, every owner appears exactly once", written)
 
-    for path in GHL_CSV_PATHS:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_suffix(".csv.tmp")
-        tmp.write_text(blob, encoding="utf-8-sig")
-        os.replace(tmp, path)
+    _write_csv_paths(blob, targets, "utf-8-sig")
+    for path in targets:
         log.info("Wrote %s (%d rows)", path.relative_to(REPO_ROOT), written)
+    if main_export:
+        dated = _dated_export_path("ghl")
+        dated.write_text(blob, encoding="utf-8-sig")
+        log.info("Wrote %s", dated.relative_to(REPO_ROOT))
 
 
 def write_skiptrace_import(records: List[Dict[str, Any]]) -> None:
@@ -3823,6 +4073,16 @@ def write_skiptrace_import(records: List[Dict[str, Any]]) -> None:
 
     rows = sorted(best.values(), key=lambda r: -(r.get("score") or 0))
     if not rows:
+        if NEW_ONLY:
+            # Nothing new today: header-only, so the file never masquerades
+            # as a fresh list.
+            buf = io.StringIO()
+            csv.writer(buf).writerow(["Address", "City", "State", "Zip", "Tag"])
+            _write_csv_paths(buf.getvalue(), SKIPTRACE_IMPORT_PATHS, "utf-8")
+            _dated_export_path("skiptrace").write_text(buf.getvalue(),
+                                                       encoding="utf-8")
+            log.info("No addresses to skip trace this run -- wrote header-only file")
+            return
         log.info("No addresses to skip trace this run")
         return
 
@@ -3843,13 +4103,13 @@ def write_skiptrace_import(records: List[Dict[str, Any]]) -> None:
         ])
 
     blob = buf.getvalue()
+    _write_csv_paths(blob, SKIPTRACE_IMPORT_PATHS, "utf-8")
     for path in SKIPTRACE_IMPORT_PATHS:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_suffix(".csv.tmp")
-        tmp.write_text(blob, encoding="utf-8")
-        os.replace(tmp, path)
         log.info("Wrote %s (%d addresses ready to skip trace)",
                  path.relative_to(REPO_ROOT), len(rows))
+    dated = _dated_export_path("skiptrace")
+    dated.write_text(blob, encoding="utf-8")
+    log.info("Wrote %s", dated.relative_to(REPO_ROOT))
     for tag, n in sorted(tags.items(), key=lambda kv: -kv[1]):
         log.info("    %-32s %d", tag, n)
 
@@ -3877,7 +4137,8 @@ def push_to_gohighlevel(records: List[Dict[str, Any]]) -> None:
     for rec in records:
         if (rec.get("score") or 0) < int(os.getenv("GHL_MIN_SCORE", "60")):
             continue
-        first, last = split_person_name(rec.get("owner", ""))
+        first, last = split_person_name(rec.get("owner", ""),
+                                        rec.get("name_order") or "last-first")
         body = {
             "locationId": location_id,
             "firstName": first, "lastName": last,
@@ -3886,7 +4147,7 @@ def push_to_gohighlevel(records: List[Dict[str, Any]]) -> None:
             "state": rec.get("mail_state", ""),
             "postalCode": rec.get("mail_zip", ""),
             "source": rec.get("source", ""),
-            "tags": ["dekalb-lead", rec.get("cat", "").lower()] + [
+            "tags": ["clayton-lead", rec.get("cat", "").lower()] + [
                 f.lower().replace(" ", "-") for f in (rec.get("flags") or [])],
             "customFields": [
                 {"key": "property_address", "field_value": rec.get("prop_address", "")},
@@ -4035,7 +4296,7 @@ def run_from_names(path: Path) -> int:
     log.info("Done in %.1fs", time.time() - t0)
     log.info("=" * 74)
     if unmatched:
-        log.info("%d name(s) did not match a DeKalb parcel. Usually a spelling "
+        log.info("%d name(s) did not match a Clayton parcel. Usually a spelling "
                  "difference, a trust, or a property outside the county.", unmatched)
     return 0
 
@@ -4046,7 +4307,7 @@ def run_from_names(path: Path) -> int:
 
 async def run_all() -> int:
     t0 = time.time()
-    # Eastern, not UTC: the cron fires at 11:17 UTC, and a UTC clock has already
+    # Eastern, not UTC: the cron fires at 11:47 UTC, and a UTC clock has already
     # rolled into tomorrow on any run after 8pm in Georgia.
     end = now_et().replace(tzinfo=None)
     start = end - timedelta(days=LOOKBACK_DAYS)
@@ -4106,21 +4367,6 @@ async def run_all() -> int:
     matched, unmatched = enrich_with_parcels(all_records, parcels, supplemental)
     log.info("Parcel matches: %d matched, %d unmatched", matched, unmatched)
 
-    # qPublic parcel reports: owner of record + mailing address, looked up by
-    # parcel number. Best-effort; failures leave the record as-is.
-    if "PARCELS" not in SKIP_SOURCES and not PARCEL_LAYER:
-        try:
-            qp_enriched, qp_failed = await enrich_from_qpublic(all_records)
-            SOURCE_REPORT["parcels"] = {
-                "ok": qp_enriched > 0 or qp_failed == 0,
-                "count": qp_enriched,
-                "error": f"{qp_failed} lookups failed" if qp_failed else "",
-            }
-        except Exception as exc:  # noqa: BLE001
-            log.warning("qPublic enrichment skipped: %s", exc)
-            SOURCE_REPORT["parcels"] = {"ok": False, "count": 0,
-                                        "error": f"qpublic: {exc}"[:120]}
-
     # A parcel can change hands to the county between filings, so check again
     # now that every record carries the roll's own idea of who owns it.
     before = len(all_records)
@@ -4130,6 +4376,47 @@ async def run_all() -> int:
         log.info("Dropped %d more now the parcel roll shows a government owner",
                  before - len(all_records))
 
+    # --- 4b. NEW_ONLY selection BEFORE qPublic enrichment -------------------
+    # The lookup budget goes to new records first; previously seen records
+    # only ever consult the cache, so a backlog of dead parcels can never
+    # starve today's leads.
+    everything_seen = list(all_records)
+    prior_seen = load_seen()
+
+    def _key(r: Dict[str, Any]) -> str:
+        return (r.get("_notice_dedupe")
+                or f"{r.get('source','')}|{r.get('doc_num','')}")
+
+    fresh = list(all_records)
+    if NEW_ONLY and prior_seen:
+        fresh = [r for r in all_records if _key(r) not in prior_seen]
+        log.info("New since the last run: %d of %d documents",
+                 len(fresh), len(all_records))
+        if not fresh:
+            log.info("Nothing new today -- the CSVs will carry headers only")
+
+    # qPublic parcel reports: owner of record + mailing address, looked up by
+    # parcel number. New records get live lookups; previously exported records
+    # only consult the cache. Best-effort; failures leave the record as-is.
+    updated: List[Dict[str, Any]] = []
+    if "PARCELS" not in SKIP_SOURCES and not PARCEL_LAYER:
+        try:
+            qp_enriched, qp_failed = await enrich_from_qpublic(fresh)
+            qp_ok = qp_enriched > 0 or qp_failed == 0
+            SOURCE_REPORT["qpublic"] = {
+                "ok": qp_ok, "status": "ok" if qp_ok else "failed",
+                "count": qp_enriched,
+                "error": f"{qp_failed} lookups failed" if qp_failed else "",
+            }
+        except Exception as exc:  # noqa: BLE001
+            log.warning("qPublic enrichment skipped: %s", exc)
+            SOURCE_REPORT["qpublic"] = {"ok": False, "status": "failed", "count": 0,
+                                        "error": f"qpublic: {exc}"[:120]}
+        if prior_seen:
+            fresh_keys = {_key(r) for r in fresh}
+            updated = apply_qpublic_cache(
+                [r for r in everything_seen if _key(r) not in fresh_keys])
+
     # --- 5. Releases, consolidation, flags, score ---------------------------
     released = apply_release_handling(all_records)
     if released:
@@ -4138,7 +4425,9 @@ async def run_all() -> int:
     context = consolidate_flags(all_records)
     log.info("Distinct properties represented: %d", len(context))
 
-    for rec in all_records:
+    # Score the fresh records (and any previously exported ones that just
+    # gained a mailing address); everything else keeps its earlier score.
+    for rec in fresh + updated:
         try:
             ctx = context.get(property_key(rec), {})
             rec["flags"] = build_flags(rec, ctx, start, end)
@@ -4148,37 +4437,19 @@ async def run_all() -> int:
             rec.setdefault("flags", [])
             rec.setdefault("score", 30)
 
-    # --- 5b. Keep only what has not been seen before -------------------------
-    # Everything this run saw, before the NEW_ONLY filter. The CSVs want only
-    # what is fresh; the archive wants the lot, or history develops holes on any
-    # day a document is re-seen rather than newly found.
-    everything_seen = list(all_records)
-    prior_seen = load_seen()
-    if NEW_ONLY and prior_seen:
-        def _key(r: Dict[str, Any]) -> str:
-            return (r.get("_notice_dedupe")
-                    or f"{r.get('source','')}|{r.get('doc_num','')}")
-        fresh = [r for r in all_records if _key(r) not in prior_seen]
-        log.info("New since the last run: %d of %d documents",
-                 len(fresh), len(all_records))
-        if fresh:
-            all_records = fresh
-        else:
-            log.info("Nothing new today -- keeping yesterday's file untouched")
-            all_records = []
-    elif prior_seen:
-        new_today = sum(1 for r in all_records
-                        if (r.get("_notice_dedupe")
-                            or f"{r.get('source','')}|{r.get('doc_num','')}")
-                        not in prior_seen)
-        log.info("New since the last run: %d of %d documents",
-                 new_today, len(all_records))
-
     # --- 6. Output ----------------------------------------------------------
-    payload = write_outputs(all_records, start, end, archive_input=everything_seen)
-    export_ghl_csv([shape_record(r) for r in all_records])
-    write_skiptrace_import([shape_record(r) for r in all_records])
-    push_to_gohighlevel([shape_record(r) for r in all_records])
+    # `fresh` is what the CSV exports carry. The archive still gets everything
+    # this run saw, or history develops holes on any day a document is re-seen
+    # rather than newly found.
+    payload = write_outputs(fresh, start, end, archive_input=everything_seen)
+    export_ghl_csv([shape_record(r) for r in fresh])
+    write_skiptrace_import([shape_record(r) for r in fresh])
+    push_to_gohighlevel([shape_record(r) for r in fresh])
+    if updated:
+        export_ghl_csv([shape_record(r) for r in updated],
+                       paths=UPDATED_CSV_PATHS)
+        log.info("Wrote updated_leads.csv: %d previously exported records "
+                 "gained a mailing address", len(updated))
 
     save_seen(everything_seen, prior_seen)
     if UNMAPPED_DOC_TYPES:
@@ -4207,15 +4478,22 @@ async def run_all() -> int:
                      "figure lives inside the document image, so ranking is by "
                      "distress type instead)")
     for name, info in SOURCE_REPORT.items():
-        status = "OK  " if info["ok"] else "FAIL"
-        log.info("  [%s] %-18s %5d records %s", status, name, info["count"],
+        mark = {"ok": "OK  ", "skipped": "SKIP", "failed": "FAIL"}.get(
+            info.get("status"), "????")
+        log.info("  [%s] %-18s %5d records %s", mark, name, info["count"],
                  f"-- {info['error']}" if info["error"] else "")
     log.info("Execution time: %.1fs", time.time() - t0)
     log.info("=" * 74)
 
-    hard_failures = [n for n, i in SOURCE_REPORT.items() if not i["ok"]]
-    if len(hard_failures) == len(SOURCE_REPORT) and SOURCE_REPORT:
-        log.error("Every source failed. Exiting non-zero so the Action surfaces it.")
+    # The "browser" entry only says Chromium launched; it is not a data
+    # source. Skipped sources (no premium account, nothing configured) are
+    # not failures either. Fail only when every enabled data source failed.
+    data_sources = {n: i for n, i in SOURCE_REPORT.items() if n != "browser"}
+    enabled = {n: i for n, i in data_sources.items()
+               if i.get("status", "failed") != "skipped"}
+    if enabled and all(i.get("status") != "ok" for i in enabled.values()):
+        log.error("Every enabled data source failed (%s). Exiting non-zero "
+                  "so the Action surfaces it.", ", ".join(sorted(enabled)))
         return 1
     return 0
 
@@ -4248,6 +4526,17 @@ def main() -> int:
         except Exception as exc:  # noqa: BLE001
             log.exception("Failed: %s", exc)
             return 1
+
+    # Debug log for the diagnostics artifact. *.log is gitignored, so this is
+    # never committed -- the workflow uploads it when a run needs diagnosing.
+    try:
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        _fh = logging.FileHandler(DATA_DIR / "debug.log", encoding="utf-8")
+        _fh.setFormatter(logging.Formatter(
+            "%(asctime)s  %(levelname)-7s %(name)-14s %(message)s", "%H:%M:%S"))
+        logging.getLogger().addHandler(_fh)
+    except Exception:  # noqa: BLE001
+        pass
 
     try:
         return asyncio.run(run_all())

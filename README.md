@@ -104,13 +104,11 @@ once a parcel source is configured — see "Where the leads come from.")
 
 ## When something needs you
 
-If a file called **`NEEDS_ATTENTION.md`** appears at the top of the repository,
-open it. It explains in plain English what broke and what to do. It deletes
-itself once the problem clears.
-
 **A bad day cannot erase a good list.** If every source fails, the scraper keeps
 the leads already published and marks them as older rather than overwriting them
-with an empty file.
+with an empty file. Each run's per-source status — working, skipped (not
+configured), or not available — is in the Actions run summary and on the
+dashboard.
 
 ---
 
@@ -131,8 +129,10 @@ selling on the courthouse steps the first Tuesday of the month. That newspaper
 ad is the real signal — which is why this scraper reads legal notices instead of
 only searching deed records the way a Florida-built scraper would.
 
-Because the same ad runs four weeks running, the scraper collapses the repeats
-into one lead and keeps the earliest publication date.
+Because the same ad runs four weeks running. Each republication carries the
+same ad code, so the scraper treats the four weekly runs as one document: it
+is exported once, and the later weeks are recognized as already seen rather
+than re-exported as new leads.
 
 ---
 
@@ -142,18 +142,22 @@ Every lead starts at **30** and climbs:
 
 | | |
 |---|---|
-| Each major distress signal | +10 |
+| Each distress type, weighted by seriousness: foreclosure +30; probate, lis pendens, or tax +25; tax lien +20; judgment or mechanic's lien +15; medical or HOA lien +12; other lien +10 | +10–30 |
 | Lis pendens **and** foreclosure on the same property | +10 |
-| Three or more different kinds of distress | +20 |
+| Three or more different kinds of distress | +10 |
+| Tax sale scheduled (or past sale, now in its redemption period) | +5 |
 | Amount owed over $100,000 | +15 |
 | Amount owed over $50,000 | +10 |
 | Filed within the lookback window | +5 |
 | Property address successfully matched | +5 |
-| Absentee owner | +5 |
+| Absentee owner | +6 |
+| Verified parcel match | +3 |
+| Likely parcel match | +2 |
 
-Capped at 100. Two adjustments pull scores down: a released or cancelled lien
-drops to 40% of its score, and a notice of commencement caps at 45 — someone
-renovating a property is investing in it, not leaving it.
+Capped at 100. Two adjustments pull scores down: a low-confidence match loses
+5 points, a released or cancelled lien drops to 40% of its score, and a notice
+of commencement caps at 45 — someone renovating a property is investing in it,
+not leaving it.
 
 **Signals stack across documents.** If a judgment is filed Monday, a lis pendens
 Wednesday, and a foreclosure ad runs Thursday — all on the same house — that is
@@ -343,6 +347,16 @@ Amount/Debt Owed, Seller Score, Motivated Seller Flags, Source, Public Records U
 
 Company names are never split. `ARTHA REALTY LLC` goes into First Name
 whole with Last Name blank, rather than being mangled.
+
+**Skip-trace file:** `data/skiptrace_import.csv` (mirrored to
+`dashboard/skiptrace_import.csv`) is one row per property — `Address, City,
+State, Zip, Tag` — with the Tag naming the lead type, so once a deal closes
+you can see what brought it in. Where several distress signals sit on the same
+house, the tag names the strongest of them. On mornings with nothing new, both
+CSVs are written header-only so yesterday's list never masquerades as today's;
+every run also leaves a dated snapshot in `data/exports/` (`ghl_YYYY-MM-DD.csv`,
+`skiptrace_YYYY-MM-DD.csv`). If a previously exported lead gains a mailing
+address on a later run, it goes out separately in `updated_leads.csv`.
 
 ---
 
