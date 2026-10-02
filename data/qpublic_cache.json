@@ -1,1 +1,392 @@
-{}
+{
+  "04236 243003": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "05146C A017": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "05213 213001 V03": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "05213 214013 A03": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "05213 214013 A07": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "05213 214013 A36": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "05245A G038": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "05245C G016": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "06002B A003": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "06096A D015": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12016B E004": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12017B D005": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12023D A006": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12085B G008": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12105A B001": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12106D F006": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12139C C017": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12140A D039": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12146D B004": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12180C D009": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12181B A016": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12204B A002": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12234A A004": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "12239A E021": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13016B C011": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13016D D031": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13018A D024": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13018A F011": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13018A G015": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13019B C010": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13046D D003": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13051C A003 157": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13051C A003 172": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13070A A001": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13078B F006": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13079B B015": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13079C C028": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13082D G007": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13090B C001": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13104D I002": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13112C E011": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13114D C001": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13115B D006": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13118A A006": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13135D A015": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13135D A017": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13143D E020": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13144C F003": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13144C F024": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13149C D019": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13153C B005": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13168A C013": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13169C B004": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13169D A002": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13182D D017": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13208C C020": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13211A B008": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13214B C001": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13237C A001": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13240D A005": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13242C A026": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13242C B008": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13242C B035": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13247C A001 E05": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  },
+  "13247D B019": {
+    "failed": true,
+    "attempts": 1,
+    "next_retry": "2026-10-04",
+    "fetched": "2026-10-02"
+  }
+}
