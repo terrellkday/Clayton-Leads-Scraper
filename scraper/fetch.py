@@ -2913,10 +2913,66 @@ def parse_qpublic_owner(html: str) -> Tuple[str, List[str]]:
     """
     Pull (owner_name, mailing_address_lines) out of a qPublic parcel report.
     Returns ("", []) when the owner block cannot be found.
-    Markup note: <SELECTOR-NOTE-FROM-RECON>.
+
+    qPublic (SchneiderCorp Beacon) markup, verified 2026-10-02 against
+    Clayton County GA parcels 12238D A008 and 13107C C002::
+
+        <main id="maincontent">
+          <section ...>                        <- ASP.NET id numbering varies;
+                                                  select by the header text
+            <header class="module-header">
+              <div class="title">Owner</div>    <- exact text "Owner"
+            </header>
+            <div class="module-content">
+              <div class="block-row">
+                <div class="four-column-blocks">  <- first of three holds the data
+                  <span id="..._sprLnkOwnerName1_..._lblSearch">NAME</span>
+                  or <a id="..._sprLnkOwnerName1_..._lnkSearch">NAME</a>
+                  <span id="..._sprLblOwnerName2_lblSuppressed"><br>EXTRA</span>
+                  <span id="..._lblAddress1"><br>STREET</span>
+                  <span id="..._lblAddress2"></span>
+                  <span id="..._lblCityStZip"><br>CITY ST ZIP</span>
+                </div>
+
+    The ctlBodyPane_ctlNN_ id prefix is ASP.NET-generated and shifts, so
+    elements are matched by id substring ("OwnerName1", "OwnerName2",
+    "lblAddress1", "lblAddress2", "lblCityStZip"). <br> tags inside the
+    spans are line breaks. Empty spans are present but hold no text.
     """
-    # -- filled in from live page recon; see parse_qpublic_owner tests -------
-    return "", []
+    soup = BeautifulSoup(html, "lxml")
+    owner_section = None
+    for section in soup.find_all("section"):
+        title = section.find("div", class_="title")
+        if title is not None and clean_text(title.get_text()) == "Owner":
+            owner_section = section
+            break
+    if owner_section is None:
+        return "", []
+    content = owner_section.find("div", class_="module-content")
+    if content is None:
+        return "", []
+    blocks = content.find_all("div", class_="four-column-blocks")
+    block = blocks[0] if blocks else content
+
+    def find_by_id_part(part: str):
+        return block.find(id=lambda v: v is not None and part in v)
+
+    def lines_of(el) -> List[str]:
+        if el is None:
+            return []
+        for br in el.find_all("br"):
+            br.replace_with("\n")
+        return [ln.strip() for ln in el.get_text().split("\n") if ln.strip()]
+
+    name_lines = lines_of(find_by_id_part("OwnerName1")) \
+        + lines_of(find_by_id_part("OwnerName2"))
+    if not name_lines:
+        return "", []
+    owner = ", ".join(name_lines)
+    mail_lines = (lines_of(find_by_id_part("lblAddress1"))
+                  + lines_of(find_by_id_part("lblAddress2"))
+                  + lines_of(find_by_id_part("lblCityStZip")))
+    return owner, mail_lines
 
 
 def load_qpublic_cache() -> Dict[str, Dict[str, Any]]:
