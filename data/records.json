@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-03T08:32:15.970809-04:00",
+  "fetched_at": "2026-10-04T06:58:53.089182-04:00",
   "source": "Clayton County GA Public Records",
   "date_range": {
-    "start": "2026-09-30",
-    "end": "2026-10-03"
+    "start": "2026-10-01",
+    "end": "2026-10-04"
   },
   "run_window": {
-    "start": "2026-09-30",
-    "end": "2026-10-03"
+    "start": "2026-10-01",
+    "end": "2026-10-04"
   },
   "archive_range": {
     "start": "2026-10-02",
@@ -94,7 +94,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -136,7 +136,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -178,7 +178,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -220,7 +220,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -263,7 +263,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -306,7 +306,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -349,7 +349,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -391,7 +391,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -433,7 +433,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -476,7 +476,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -518,7 +518,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -560,7 +560,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -602,7 +602,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -644,7 +644,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -686,7 +686,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -728,7 +728,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -771,7 +771,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -813,7 +813,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -855,7 +855,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -898,7 +898,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -940,7 +940,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -982,7 +982,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1024,7 +1024,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1066,7 +1066,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1108,7 +1108,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1150,7 +1150,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1192,7 +1192,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1234,7 +1234,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1276,7 +1276,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1318,7 +1318,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1360,7 +1360,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1402,7 +1402,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1444,7 +1444,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1486,7 +1486,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1528,7 +1528,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1570,7 +1570,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1612,7 +1612,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -1655,7 +1655,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1697,7 +1697,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1739,7 +1739,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1781,7 +1781,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1823,7 +1823,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1865,7 +1865,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1907,7 +1907,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1949,7 +1949,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -1992,7 +1992,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2035,7 +2035,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2077,7 +2077,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2119,7 +2119,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2161,7 +2161,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2203,7 +2203,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2245,7 +2245,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2287,7 +2287,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2329,7 +2329,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2371,7 +2371,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2413,7 +2413,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2455,7 +2455,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2497,7 +2497,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2539,7 +2539,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2581,7 +2581,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2623,7 +2623,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2665,7 +2665,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2707,7 +2707,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2749,7 +2749,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2791,7 +2791,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2834,7 +2834,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -2876,7 +2876,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -2918,7 +2918,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -2960,7 +2960,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -3002,7 +3002,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -3044,7 +3044,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -3086,7 +3086,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-03",
+      "last_verified": "2026-10-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
