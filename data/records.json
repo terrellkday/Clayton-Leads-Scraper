@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-30T06:59:05.159569-04:00",
+  "fetched_at": "2026-10-31T06:59:16.572919-04:00",
   "source": "Clayton County GA Public Records",
   "date_range": {
-    "start": "2026-10-27",
-    "end": "2026-10-30"
+    "start": "2026-10-28",
+    "end": "2026-10-31"
   },
   "run_window": {
-    "start": "2026-10-27",
-    "end": "2026-10-30"
+    "start": "2026-10-28",
+    "end": "2026-10-31"
   },
   "archive_range": {
     "start": "2026-10-02",
@@ -50,7 +50,7 @@
     "tax_sales": {
       "ok": true,
       "status": "ok",
-      "count": 41,
+      "count": 24,
       "error": ""
     },
     "qpublic": {
@@ -94,7 +94,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "New this week",
@@ -137,7 +137,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "LLC / corp owner",
@@ -180,7 +180,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "New this week",
@@ -223,7 +223,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -265,7 +265,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -326,8 +326,8 @@
       "parcel_owner": "",
       "name_order": "last-first",
       "grantee": "Clayton County Tax Commissioner",
-      "amount": 1244.16,
-      "legal": "Delinquent tax years 2025. Fair market value $2,500.",
+      "amount": 3039.71,
+      "legal": "Delinquent tax years 2023,2024,2025. Fair market value $2,500.",
       "parcel_id": "05146C A017",
       "prop_address": "633 TOGWATEE PASS",
       "prop_city": "",
@@ -339,17 +339,17 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
-      "years_delinquent": "2025",
+      "years_delinquent": "2023,2024,2025",
       "heirs_unknown": "",
       "notice_number": "05146C A017",
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -679,7 +679,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -689,7 +689,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -805,7 +805,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -815,7 +815,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -889,7 +889,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -899,7 +899,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -931,7 +931,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -941,7 +941,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -974,7 +974,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -984,7 +984,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1227,7 +1227,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -1237,7 +1237,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1311,7 +1311,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -1321,7 +1321,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1521,7 +1521,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -1531,7 +1531,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1563,7 +1563,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -1573,7 +1573,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1647,7 +1647,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -1657,7 +1657,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1773,7 +1773,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -1783,7 +1783,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1815,7 +1815,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -1825,7 +1825,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -1887,8 +1887,8 @@
       "parcel_owner": "",
       "name_order": "last-first",
       "grantee": "Clayton County Tax Commissioner",
-      "amount": 2439.68,
-      "legal": "Delinquent tax years 2025. Fair market value $149,000.",
+      "amount": 6101.36,
+      "legal": "Delinquent tax years 2024,2025. Fair market value $149,000.",
       "parcel_id": "13090B C001",
       "prop_address": "5408 PARK PL",
       "prop_city": "",
@@ -1900,17 +1900,17 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
-      "years_delinquent": "2025",
+      "years_delinquent": "2024,2025",
       "heirs_unknown": "",
       "notice_number": "13090B C001",
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2152,7 +2152,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2162,7 +2162,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2195,7 +2195,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2205,7 +2205,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2238,7 +2238,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2248,7 +2248,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2574,7 +2574,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2584,7 +2584,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2616,7 +2616,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2626,7 +2626,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2658,7 +2658,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2668,7 +2668,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2700,7 +2700,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2710,7 +2710,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2784,7 +2784,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2794,7 +2794,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2826,7 +2826,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2836,7 +2836,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2952,7 +2952,7 @@
       "mail_state": "",
       "mail_zip": "",
       "owner_occupied": null,
-      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-5-26.pdf",
+      "clerk_url": "https://publicaccess.claytoncountyga.gov/content/PDF/NOVEMBER%20TAX%20SALE%20LISTING%2010-27-26.pdf",
       "source": "Clayton County Tax Commissioner (tax sale listing)",
       "foreclosure_sale_date": "2026-11-03",
       "tax_sale_date": "2026-11-03",
@@ -2962,7 +2962,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -3047,7 +3047,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -3089,7 +3089,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -3131,7 +3131,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -3173,7 +3173,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-10-30",
+      "last_verified": "2026-10-31",
       "flags": [
         "Pre-foreclosure",
         "New this week"
