@@ -1,26 +1,26 @@
 {
-  "fetched_at": "2026-11-03T06:59:22.304153-05:00",
+  "fetched_at": "2026-11-04T06:59:47.128630-05:00",
   "source": "Clayton County GA Public Records",
   "date_range": {
-    "start": "2026-10-31",
-    "end": "2026-11-03"
+    "start": "2026-11-01",
+    "end": "2026-11-04"
   },
   "run_window": {
-    "start": "2026-10-31",
-    "end": "2026-11-03"
+    "start": "2026-11-01",
+    "end": "2026-11-04"
   },
   "archive_range": {
     "start": "2026-10-02",
-    "end": "2026-10-28"
+    "end": "2026-11-04"
   },
   "filed_range": {
     "start": "2026-09-30",
-    "end": "2026-11-03"
+    "end": "2026-11-04"
   },
-  "new_this_run": 0,
-  "archive_total": 86,
+  "new_this_run": 5,
+  "archive_total": 91,
   "dashboard_days": 120,
-  "total": 86,
+  "total": 91,
   "with_address": 70,
   "sources_report": {
     "parcels": {
@@ -44,7 +44,7 @@
     "legal_notices": {
       "ok": true,
       "status": "ok",
-      "count": 10,
+      "count": 13,
       "error": ""
     },
     "tax_sales": {
@@ -62,52 +62,9 @@
   },
   "records": [
     {
-      "doc_num": "GPN-CND8120",
-      "doc_type": "Notice of Sale Under Power",
-      "filed": "2026-10-28",
-      "cat": "FC",
-      "cat_label": "Pre-Foreclosure",
-      "owner": "",
-      "parcel_owner": "",
-      "name_order": "natural",
-      "grantee": "",
-      "amount": null,
-      "legal": "Clayton News Daily Wednesday, October 28, 2026 City: Jonesboro County: Clayton CND8120 GPN10 NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A., Section 48-4-5 et seq.; 48-4-45 & 48-4-46] TO: UNKNOWN HEIRS AT LAW OF BAISBER VICTORIA CARTER CLAYTON COUNTY, GEORGIA Occupant 5637 DENSON BLVD, Clayton County, Georgia. RE: FORECLOSURE OF EQUITY OF REDEMPTION FOR TA ... click 'view' to open the full text.",
-      "parcel_id": "",
-      "prop_address": "5637 DENSON BLVD",
-      "prop_city": "",
-      "prop_state": "GA",
-      "prop_zip": "",
-      "pub_city": "Jonesboro",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "",
-      "mail_zip": "",
-      "owner_occupied": null,
-      "clerk_url": "https://www.georgiapublicnotice.com/search.aspx",
-      "source": "Georgia Public Notice (legal organ advertisement)",
-      "foreclosure_sale_date": "",
-      "tax_sale_date": "",
-      "years_delinquent": "",
-      "heirs_unknown": true,
-      "notice_number": "CND8120",
-      "status": "active",
-      "match_confidence": 0.0,
-      "match_method": "none",
-      "last_verified": "2026-11-03",
-      "flags": [
-        "Pre-foreclosure",
-        "New this week",
-        "Unknown heirs / unsettled estate"
-      ],
-      "score": 70,
-      "county": "Clayton",
-      "first_seen": "2026-10-14"
-    },
-    {
       "doc_num": "GPN-CND8116",
       "doc_type": "Notice of Sale Under Power",
-      "filed": "2026-10-28",
+      "filed": "2026-11-04",
       "cat": "FC",
       "cat_label": "Pre-Foreclosure",
       "owner": "JOHN JOSEPH WILLIAMS RHA LLC",
@@ -115,7 +72,7 @@
       "name_order": "natural",
       "grantee": "",
       "amount": null,
-      "legal": "Clayton News Daily Wednesday, October 28, 2026 City: Jonesboro County: Clayton CND8116 GPN10 NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A., Section 48-4-5 et seq.; 48-4-45 & 48-4-46] TO: JOHN JOSEPH WILLIAMS RHA LLC a/k/a RH&A LLC THE ASSOCIATION AT CRYSTAL LAKE, INC. CLAYTON COUNTY, GEORGIA Occupant 1182 BROOKSTONE RD, Clayton County, Georgia. RE: FORECL ... click 'view' to open the full text.",
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton CND8116 GPN10 NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A., Section 48-4-5 et seq.; 48-4-45 & 48-4-46] TO: JOHN JOSEPH WILLIAMS RHA LLC a/k/a RH&A LLC THE ASSOCIATION AT CRYSTAL LAKE, INC. CLAYTON COUNTY, GEORGIA Occupant 1182 BROOKSTONE RD, Clayton County, Georgia. RE: FORECL ... click 'view' to open the full text.",
       "parcel_id": "",
       "prop_address": "1182 BROOKSTONE RD",
       "prop_city": "",
@@ -137,7 +94,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Pre-foreclosure",
         "LLC / corp owner",
@@ -150,7 +107,7 @@
     {
       "doc_num": "GPN-CND8109",
       "doc_type": "Notice of Sale Under Power",
-      "filed": "2026-10-28",
+      "filed": "2026-11-04",
       "cat": "FC",
       "cat_label": "Pre-Foreclosure",
       "owner": "All persons known",
@@ -158,7 +115,7 @@
       "name_order": "natural",
       "grantee": "",
       "amount": null,
-      "legal": "Clayton News Daily Wednesday, October 28, 2026 City: Jonesboro County: Clayton CND8109 GPN10 NOTICE OF FORECLOSURE OF RIGHT OF REDEMPTION STATE OF GEORGIA COUNTY OF CLAYTON To: All persons known or unknown who may claim an interest in property known as 0 Denson Blvd (I013); Resident/Tenant/Occupant; Unknown Heirs of William B. Dozier; Unknown Heirs of Emmie Mae Harper; ... click 'view' to open the full text.",
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton CND8109 GPN10 NOTICE OF FORECLOSURE OF RIGHT OF REDEMPTION STATE OF GEORGIA COUNTY OF CLAYTON To: All persons known or unknown who may claim an interest in property known as 0 Denson Blvd (I013); Resident/Tenant/Occupant; Unknown Heirs of William B. Dozier; Unknown Heirs of Emmie Mae Harper; ... click 'view' to open the full text.",
       "parcel_id": "",
       "prop_address": "0 DENSON BLVD",
       "prop_city": "",
@@ -180,7 +137,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Pre-foreclosure",
         "New this week",
@@ -193,7 +150,7 @@
     {
       "doc_num": "GPN-CND8095",
       "doc_type": "Notice of Sale Under Power",
-      "filed": "2026-10-28",
+      "filed": "2026-11-04",
       "cat": "FC",
       "cat_label": "Pre-Foreclosure",
       "owner": "All persons known",
@@ -201,7 +158,7 @@
       "name_order": "natural",
       "grantee": "",
       "amount": null,
-      "legal": "Clayton News Daily Wednesday, October 28, 2026 City: Jonesboro County: Clayton CND8095 GPN10 NOTICE OF FORECLOSURE OF RIGHT OF REDEMPTION STATE OF GEORGIA COUNTY OF CLAYTON To:All persons known or unknown who may claim an interest in property known as 0 Burks Drive ;Resident/Tenant/Occupant;Tony Ray;Clayton County Sheriff's Office;Georgia Underwriters Group, Inc.;Unknown ... click 'view' to open the full text.",
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton CND8095 GPN10 NOTICE OF FORECLOSURE OF RIGHT OF REDEMPTION STATE OF GEORGIA COUNTY OF CLAYTON To:All persons known or unknown who may claim an interest in property known as 0 Burks Drive ;Resident/Tenant/Occupant;Tony Ray;Clayton County Sheriff's Office;Georgia Underwriters Group, Inc.;Unknown ... click 'view' to open the full text.",
       "parcel_id": "",
       "prop_address": "0 BURKS DRIVE",
       "prop_city": "",
@@ -223,7 +180,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -235,7 +192,7 @@
     {
       "doc_num": "GPN-CND8097",
       "doc_type": "Notice of Sale Under Power",
-      "filed": "2026-10-28",
+      "filed": "2026-11-04",
       "cat": "FC",
       "cat_label": "Pre-Foreclosure",
       "owner": "All persons known",
@@ -243,7 +200,7 @@
       "name_order": "natural",
       "grantee": "",
       "amount": null,
-      "legal": "Clayton News Daily Wednesday, October 28, 2026 City: Jonesboro County: Clayton CND8097 GPN10 NOTICE OF FORECLOSURE OF RIGHT OF REDEMPTION STATE OF GEORGIA COUNTY OF CLAYTON To: All persons known or unknown who may claim an interest in property known as 0 Burks Drive; Resident/Tenant/Occupant; No Limits Community Development Corporation; Clayton County; State of Georgi ... click 'view' to open the full text.",
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton CND8097 GPN10 NOTICE OF FORECLOSURE OF RIGHT OF REDEMPTION STATE OF GEORGIA COUNTY OF CLAYTON To: All persons known or unknown who may claim an interest in property known as 0 Burks Drive; Resident/Tenant/Occupant; No Limits Community Development Corporation; Clayton County; State of Georgi ... click 'view' to open the full text.",
       "parcel_id": "",
       "prop_address": "0 BURKS DRIVE",
       "prop_city": "",
@@ -265,7 +222,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -273,6 +230,259 @@
       "score": 70,
       "county": "Clayton",
       "first_seen": "2026-10-21"
+    },
+    {
+      "doc_num": "GPN-CND8120",
+      "doc_type": "Notice of Sale Under Power",
+      "filed": "2026-10-28",
+      "cat": "FC",
+      "cat_label": "Pre-Foreclosure",
+      "owner": "",
+      "parcel_owner": "",
+      "name_order": "natural",
+      "grantee": "",
+      "amount": null,
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton CND8120 GPN10 NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A., Section 48-4-5 et seq.; 48-4-45 & 48-4-46] TO: UNKNOWN HEIRS AT LAW OF BAISBER VICTORIA CARTER CLAYTON COUNTY, GEORGIA Occupant 5637 DENSON BLVD, Clayton County, Georgia. RE: FORECLOSURE OF EQUITY OF REDEMPTION FOR TA ... click 'view' to open the full text.",
+      "parcel_id": "",
+      "prop_address": "5637 DENSON BLVD",
+      "prop_city": "",
+      "prop_state": "GA",
+      "prop_zip": "",
+      "pub_city": "Jonesboro",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "",
+      "mail_zip": "",
+      "owner_occupied": null,
+      "clerk_url": "https://www.georgiapublicnotice.com/search.aspx",
+      "source": "Georgia Public Notice (legal organ advertisement)",
+      "foreclosure_sale_date": "",
+      "tax_sale_date": "",
+      "years_delinquent": "",
+      "heirs_unknown": true,
+      "notice_number": "CND8120",
+      "status": "active",
+      "match_confidence": 0.0,
+      "match_method": "none",
+      "last_verified": "2026-11-04",
+      "flags": [
+        "Pre-foreclosure",
+        "New this week",
+        "Unknown heirs / unsettled estate"
+      ],
+      "score": 70,
+      "county": "Clayton",
+      "first_seen": "2026-10-14"
+    },
+    {
+      "doc_num": "GPN-CND8228",
+      "doc_type": "Notice of Sale Under Power",
+      "filed": "2026-11-04",
+      "cat": "FC",
+      "cat_label": "Pre-Foreclosure",
+      "owner": "Delores Ann Holloway Patel",
+      "parcel_owner": "",
+      "name_order": "natural",
+      "grantee": "",
+      "amount": null,
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton gpn11 Gpn11 cnd8228 10630812 Notice of Sale Under Power. State of Georgia, County of Clayton. Under and by virtue of the Power of Sale contained in a Deed to Secure Debt given by Delores Ann Holloway Patel to Mortgage Electronic Registration Systems, INC., As Grantee, As Nominee For Moria Deve ... click 'view' to open the full text.",
+      "parcel_id": "",
+      "prop_address": "",
+      "prop_city": "",
+      "prop_state": "GA",
+      "prop_zip": "",
+      "pub_city": "Jonesboro",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "",
+      "mail_zip": "",
+      "owner_occupied": null,
+      "clerk_url": "https://www.georgiapublicnotice.com/search.aspx",
+      "source": "Georgia Public Notice (legal organ advertisement)",
+      "foreclosure_sale_date": "",
+      "tax_sale_date": "",
+      "years_delinquent": "",
+      "heirs_unknown": false,
+      "notice_number": "CND8228",
+      "status": "active",
+      "match_confidence": 0.0,
+      "match_method": "none",
+      "last_verified": "2026-11-04",
+      "flags": [
+        "Pre-foreclosure",
+        "New this week"
+      ],
+      "score": 65,
+      "county": "Clayton",
+      "first_seen": "2026-11-04"
+    },
+    {
+      "doc_num": "GPN-CND8829",
+      "doc_type": "Notice of Sale Under Power",
+      "filed": "2026-11-04",
+      "cat": "FC",
+      "cat_label": "Pre-Foreclosure",
+      "owner": "Marco Harris And Erika Wheeler",
+      "parcel_owner": "",
+      "name_order": "natural",
+      "grantee": "",
+      "amount": null,
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton gpn11 Gpn11 cnd8829 9942806 Notice of Sale Under Power. State of Georgia, County of Clayton. Under and by virtue of the Power of Sale contained in a Deed to Secure Debt given by Marco Harris And Erika Wheeler to Mortgage Electronic Registration Systems, INC., As Grantee, As Nominee For Mortgag ... click 'view' to open the full text.",
+      "parcel_id": "",
+      "prop_address": "",
+      "prop_city": "",
+      "prop_state": "GA",
+      "prop_zip": "",
+      "pub_city": "Jonesboro",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "",
+      "mail_zip": "",
+      "owner_occupied": null,
+      "clerk_url": "https://www.georgiapublicnotice.com/search.aspx",
+      "source": "Georgia Public Notice (legal organ advertisement)",
+      "foreclosure_sale_date": "",
+      "tax_sale_date": "",
+      "years_delinquent": "",
+      "heirs_unknown": false,
+      "notice_number": "CND8829",
+      "status": "active",
+      "match_confidence": 0.0,
+      "match_method": "none",
+      "last_verified": "2026-11-04",
+      "flags": [
+        "Pre-foreclosure",
+        "New this week"
+      ],
+      "score": 65,
+      "county": "Clayton",
+      "first_seen": "2026-11-04"
+    },
+    {
+      "doc_num": "GPN-CND8270",
+      "doc_type": "Notice of Sale Under Power",
+      "filed": "2026-11-04",
+      "cat": "FC",
+      "cat_label": "Pre-Foreclosure",
+      "owner": "Mia Brown",
+      "parcel_owner": "",
+      "name_order": "natural",
+      "grantee": "",
+      "amount": null,
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton gpn11 Gpn11 cnd8270 NOTICE OF SALE UNDER POWER, CLAYTON COUNTY Pursuant to the Power of Sale contained in a Security Deed given by Mia Brown to Mortgage Electronic Registration Systems, Inc., as grantee, as nominee for Ameris Bank, its successors and assigns dated 4/21/2025 and recorded in Deed ... click 'view' to open the full text.",
+      "parcel_id": "",
+      "prop_address": "",
+      "prop_city": "",
+      "prop_state": "GA",
+      "prop_zip": "",
+      "pub_city": "Jonesboro",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "",
+      "mail_zip": "",
+      "owner_occupied": null,
+      "clerk_url": "https://www.georgiapublicnotice.com/search.aspx",
+      "source": "Georgia Public Notice (legal organ advertisement)",
+      "foreclosure_sale_date": "",
+      "tax_sale_date": "",
+      "years_delinquent": "",
+      "heirs_unknown": false,
+      "notice_number": "CND8270",
+      "status": "active",
+      "match_confidence": 0.0,
+      "match_method": "none",
+      "last_verified": "2026-11-04",
+      "flags": [
+        "Pre-foreclosure",
+        "New this week"
+      ],
+      "score": 65,
+      "county": "Clayton",
+      "first_seen": "2026-11-04"
+    },
+    {
+      "doc_num": "GPN-CND8269",
+      "doc_type": "Notice of Sale Under Power",
+      "filed": "2026-11-04",
+      "cat": "FC",
+      "cat_label": "Pre-Foreclosure",
+      "owner": "Cortazz Russ and Nia Russ",
+      "parcel_owner": "",
+      "name_order": "natural",
+      "grantee": "",
+      "amount": null,
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton gpn11 Gpn11 cnd8269 NOTICE OF SALE UNDER POWER, CLAYTON COUNTY Pursuant to the Power of Sale contained in a Security Deed given by Cortazz Russ and Nia Russ to Mortgage Electronic Registration Systems, Inc., as grantee, as nominee for SecurityNational Mortgage Company, its successors and assign ... click 'view' to open the full text.",
+      "parcel_id": "",
+      "prop_address": "",
+      "prop_city": "",
+      "prop_state": "GA",
+      "prop_zip": "",
+      "pub_city": "Jonesboro",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "",
+      "mail_zip": "",
+      "owner_occupied": null,
+      "clerk_url": "https://www.georgiapublicnotice.com/search.aspx",
+      "source": "Georgia Public Notice (legal organ advertisement)",
+      "foreclosure_sale_date": "",
+      "tax_sale_date": "",
+      "years_delinquent": "",
+      "heirs_unknown": false,
+      "notice_number": "CND8269",
+      "status": "active",
+      "match_confidence": 0.0,
+      "match_method": "none",
+      "last_verified": "2026-11-04",
+      "flags": [
+        "Pre-foreclosure",
+        "New this week"
+      ],
+      "score": 65,
+      "county": "Clayton",
+      "first_seen": "2026-11-04"
+    },
+    {
+      "doc_num": "GPN-CND8268",
+      "doc_type": "Notice of Sale Under Power",
+      "filed": "2026-11-04",
+      "cat": "FC",
+      "cat_label": "Pre-Foreclosure",
+      "owner": "Sylvester Frimpong",
+      "parcel_owner": "",
+      "name_order": "natural",
+      "grantee": "",
+      "amount": null,
+      "legal": "Clayton News Daily Wednesday, November 04, 2026 City: Jonesboro County: Clayton gpn11 Gpn11 cnd8268 NOTICE OF SALE UNDER POWER, CLAYTON COUNTY Pursuant to the Power of Sale contained in a Security Deed given by Sylvester Frimpong to Mortgage Electronic Registration Systems, Inc., as grantee, as nominee for America's Wholesale Lender, its successors and assigns dated 12/21/ ... click 'view' to open the full text.",
+      "parcel_id": "",
+      "prop_address": "",
+      "prop_city": "",
+      "prop_state": "GA",
+      "prop_zip": "",
+      "pub_city": "Jonesboro",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "",
+      "mail_zip": "",
+      "owner_occupied": null,
+      "clerk_url": "https://www.georgiapublicnotice.com/search.aspx",
+      "source": "Georgia Public Notice (legal organ advertisement)",
+      "foreclosure_sale_date": "",
+      "tax_sale_date": "",
+      "years_delinquent": "",
+      "heirs_unknown": false,
+      "notice_number": "CND8268",
+      "status": "active",
+      "match_confidence": 0.0,
+      "match_method": "none",
+      "last_verified": "2026-11-04",
+      "flags": [
+        "Pre-foreclosure",
+        "New this week"
+      ],
+      "score": 65,
+      "county": "Clayton",
+      "first_seen": "2026-11-04"
     },
     {
       "doc_num": "TAX-202611-04236243003",
@@ -349,7 +559,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -689,7 +899,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -815,7 +1025,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -899,7 +1109,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -941,7 +1151,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -984,7 +1194,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1237,7 +1447,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1321,7 +1531,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1531,7 +1741,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1573,7 +1783,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1657,7 +1867,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1783,7 +1993,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1825,7 +2035,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -1910,7 +2120,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2162,7 +2372,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2205,7 +2415,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2248,7 +2458,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2584,7 +2794,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2626,7 +2836,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2668,7 +2878,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2710,7 +2920,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2794,7 +3004,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2836,7 +3046,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2962,7 +3172,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-03",
+      "last_verified": "2026-11-04",
       "flags": [
         "Tax delinquent",
         "Tax sale"
