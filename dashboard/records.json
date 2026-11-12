@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-11-11T06:58:54.674997-05:00",
+  "fetched_at": "2026-11-12T06:58:53.240130-05:00",
   "source": "Clayton County GA Public Records",
   "date_range": {
-    "start": "2026-11-08",
-    "end": "2026-11-11"
+    "start": "2026-11-09",
+    "end": "2026-11-12"
   },
   "run_window": {
-    "start": "2026-11-08",
-    "end": "2026-11-11"
+    "start": "2026-11-09",
+    "end": "2026-11-12"
   },
   "archive_range": {
     "start": "2026-10-02",
@@ -17,7 +17,7 @@
     "start": "2026-09-30",
     "end": "2026-11-11"
   },
-  "new_this_run": 3,
+  "new_this_run": 0,
   "archive_total": 94,
   "dashboard_days": 120,
   "total": 94,
@@ -94,7 +94,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week",
@@ -137,7 +137,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -179,7 +179,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -221,7 +221,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "LLC / corp owner",
@@ -264,7 +264,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week",
@@ -307,7 +307,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -349,7 +349,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -391,7 +391,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -433,7 +433,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -475,7 +475,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -517,7 +517,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -559,7 +559,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Pre-foreclosure",
         "New this week"
@@ -685,7 +685,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1025,7 +1025,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1151,7 +1151,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1235,7 +1235,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1277,7 +1277,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -1320,7 +1320,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1573,7 +1573,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1657,7 +1657,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1867,7 +1867,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1909,7 +1909,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -1993,7 +1993,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2119,7 +2119,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2161,7 +2161,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2246,7 +2246,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2498,7 +2498,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2541,7 +2541,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale",
@@ -2584,7 +2584,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2920,7 +2920,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -2962,7 +2962,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -3004,7 +3004,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -3046,7 +3046,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -3130,7 +3130,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -3172,7 +3172,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
@@ -3298,7 +3298,7 @@
       "status": "active",
       "match_confidence": 0.0,
       "match_method": "none",
-      "last_verified": "2026-11-11",
+      "last_verified": "2026-11-12",
       "flags": [
         "Tax delinquent",
         "Tax sale"
